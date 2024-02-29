@@ -1,8 +1,8 @@
 "use client"
 
-import { SignOutButton } from "@/components/SignOutButton";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { signOut } from "next-auth/react";
 
 export default function Home() {
   const { status } = useSession();
@@ -10,7 +10,14 @@ export default function Home() {
   const showSession = () => {
     if (status === "authenticated") {
       return (
-        <SignOutButton />
+        <button
+          className="text-[#888] text-sm text-999 mt-7 transition duration-150 ease hover:text-white"
+          onClick={() => {
+            signOut();
+          }}
+        >
+          Logout here
+        </button>
       )
     } else if (status === "loading") {
       return (
